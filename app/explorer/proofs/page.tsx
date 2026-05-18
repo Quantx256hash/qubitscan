@@ -42,15 +42,11 @@ export default function ProofsBrowser() {
 
   return (
     <div className="flex flex-col gap-12">
-      <SectionHeader
-        eyebrow="Reconstructed evidence"
-        headline="Sealed proofs."
-      />
+      <SectionHeader eyebrow="Proofs" headline="Proofs" />
       <p className="qb-body max-w-[62ch]">
-        Each proof is rebuilt in your browser from the live chain — system
-        contract logs filtered by topic, bound to the verbatim coverage claim
-        the gateway reports. Nothing here is asserted by this site; it is the
-        chain&apos;s own record.
+        Each proof is reconstructed in your browser from system-contract logs
+        and bound to the coverage claim the gateway reports. No data is
+        asserted by this site — it is read from the chain.
       </p>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -70,10 +66,10 @@ export default function ProofsBrowser() {
       </div>
 
       {events && events.length === 0 ? (
-        <HudPanel label="SCAN RESULT">
+        <HudPanel label="No results">
           <p className="qb-label py-8 text-qb-mist">
-            NO SYSTEM-CONTRACT EVENTS IN THE CURRENT WINDOW — THE TESTNET IS
-            YOUNG. PROOFS POPULATE AS PQ ACTIVITY LANDS.
+            No system-contract events in the scanned range. Proofs populate as
+            PQ activity is recorded.
           </p>
         </HudPanel>
       ) : null}

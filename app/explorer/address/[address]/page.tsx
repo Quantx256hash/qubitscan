@@ -30,7 +30,7 @@ export default function AddressDetail() {
     <div className="flex flex-col gap-12">
       <SectionHeader
         eyebrow={acct.isContract ? "Qubitor Account · Contract" : "Account"}
-        headline={acct.isContract ? "Smart account." : "Address."}
+        headline={acct.isContract ? "Account" : "Address"}
       />
 
       <HudPanel label="ACCOUNT" status={acct.isContract ? "CONTRACT" : "EXTERNAL"}>
@@ -79,11 +79,11 @@ export default function AddressDetail() {
           ))}
           {events && events.length === 0 ? (
             <p className="qb-label py-8 text-qb-mist">
-              NO EMITTED EVENTS IN WINDOW
+              No events in the scanned range.
             </p>
           ) : null}
           {!events ? (
-            <p className="qb-label py-8 text-qb-mist">SCANNING…</p>
+            <p className="qb-label py-8 text-qb-mist">Loading…</p>
           ) : null}
         </div>
       </HudPanel>

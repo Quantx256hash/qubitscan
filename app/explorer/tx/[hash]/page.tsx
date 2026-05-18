@@ -30,13 +30,13 @@ export default function TxDetail() {
     <div className="flex flex-col gap-12">
       <SectionHeader
         eyebrow={`Transaction · ${txTypeLabel(tx.type)}`}
-        headline={pq ? "PQ-native transfer." : "Transaction."}
+        headline="Transaction"
       />
 
       {pq ? (
         <HudPanel
           label="QUBITORPQTXV1 · TYPE 0x04"
-          status="ML-DSA-65 AUTHORIZED"
+          status="ML-DSA-65 verified"
         >
           <div className="flex flex-col gap-4">
             <p className="qb-body text-sm">

@@ -46,16 +46,16 @@ export default function ExplorerOverview() {
     <div className="flex flex-col gap-20">
       <header className="flex flex-col gap-8">
         <SectionHeader
-          eyebrow="Qubitor Testnet · Live Surface"
-          headline="The chain, observed."
+          eyebrow="Qubitor Testnet"
+          headline="Network overview"
         />
         <p className="qb-body max-w-[60ch]">
-          A direct read of the live Qubitor testnet gateway. No indexer, no
-          cache layer — every value below is the chain answering for itself.
+          Live data read directly from the Qubitor testnet RPC — no indexer or
+          cache. Values update as the chain advances.
         </p>
         {error ? (
           <p className="qb-label text-qb-spark">
-            ◇ RPC UNREACHABLE — {error}. Retrying…
+            RPC unreachable — {error}. Retrying…
           </p>
         ) : null}
       </header>
@@ -102,7 +102,7 @@ export default function ExplorerOverview() {
 
       {/* system status + exact claim */}
       <section className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <HudPanel label="SYSTEM STATUS" status="GENESIS-INSTALLED">
+        <HudPanel label="System contracts" status="GENESIS-INSTALLED">
           <dl className="flex flex-col gap-3 font-mono text-sm">
             <Row k="Precompile" v={status?.precompile?.name} />
             <Row
@@ -134,7 +134,7 @@ export default function ExplorerOverview() {
           </dl>
         </HudPanel>
 
-        <HudPanel label="NATIVE BRIDGE" status={bridge ? "READABLE" : "—"}>
+        <HudPanel label="NATIVE BRIDGE" status={bridge ? "Live" : "—"}>
           <dl className="flex flex-col gap-3 font-mono text-sm">
             <Row k="Registry" v={bridge?.registry} mono />
             <Row k="Guardian Verifier" v={bridge?.guardianVerifier} mono />
@@ -167,7 +167,7 @@ export default function ExplorerOverview() {
       {/* exact claim boundary — verbatim */}
       {status ? (
         <section>
-          <HudPanel label="EXACT CLAIM · COVERAGE BOUNDARY">
+          <HudPanel label="Coverage boundary">
             <blockquote className="flex flex-col gap-4">
               <p className="font-mono text-base uppercase leading-relaxed tracking-[0.06em] text-qb-bone">
                 “{status.exactClaim}”
@@ -182,31 +182,29 @@ export default function ExplorerOverview() {
 
       {/* latest blocks + event feed */}
       <section className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <HudPanel label="LATEST BLOCKS" status="STREAMING">
+        <HudPanel label="LATEST BLOCKS" status="Live">
           <div className="flex flex-col">
             {(blocks ?? []).map((b) => (
               <BlockRow key={b.hash} block={b} />
             ))}
             {!blocks ? (
-              <p className="qb-label py-8 text-qb-mist">DECRYPTING LEDGER…</p>
+              <p className="qb-label py-8 text-qb-mist">Loading blocks…</p>
             ) : null}
           </div>
         </HudPanel>
 
-        <HudPanel label="PQ EVENT FEED" status="eth_getLogs">
+        <HudPanel label="System events" status="eth_getLogs">
           <div className="flex flex-col">
             {(events ?? []).map((e) => (
               <EventRow key={e.id} ev={e} />
             ))}
             {events && events.length === 0 ? (
               <p className="qb-label py-8 text-qb-mist">
-                NO SYSTEM EVENTS IN WINDOW — CHAIN IS YOUNG
+                No system-contract events in the scanned range.
               </p>
             ) : null}
             {!events ? (
-              <p className="qb-label py-8 text-qb-mist">
-                SCANNING SYSTEM CONTRACTS…
-              </p>
+              <p className="qb-label py-8 text-qb-mist">Loading events…</p>
             ) : null}
           </div>
         </HudPanel>

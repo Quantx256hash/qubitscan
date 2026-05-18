@@ -53,7 +53,7 @@ export default function BlockDetail() {
           ))}
           {txs.length === 0 ? (
             <p className="qb-label py-8 text-qb-mist">
-              EMPTY BLOCK — NO TRANSACTIONS
+              No transactions in this block.
             </p>
           ) : null}
         </div>

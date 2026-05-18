@@ -86,13 +86,11 @@ export default function ProofBundleViewer() {
           ))}
           {events && matched.length === 0 ? (
             <p className="qb-label py-8 text-qb-mist">
-              NO MATCHING EVENTS IN THE CURRENT {`${4000}`}-BLOCK WINDOW
+              No matching events in the scanned 4,000-block range.
             </p>
           ) : null}
           {!events ? (
-            <p className="qb-label py-8 text-qb-mist">
-              RECONSTRUCTING FROM LOGS…
-            </p>
+            <p className="qb-label py-8 text-qb-mist">Loading events…</p>
           ) : null}
         </div>
       </HudPanel>

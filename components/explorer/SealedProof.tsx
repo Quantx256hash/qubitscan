@@ -15,10 +15,9 @@ type Props = {
 };
 
 /**
- * "SEALED PROOF" card. Renders the verbatim exactClaim boundary (never
- * paraphrased — keeps us inside the coverage-matrix language) plus an
- * evidence count, and, when a reconstructed bundle is supplied, a
- * download-as-JSON action.
+ * Proof card. Renders the verbatim exactClaim boundary (never paraphrased —
+ * keeps us inside the coverage-matrix language) plus an evidence count, and,
+ * when a reconstructed bundle is supplied, a download-as-JSON action.
  */
 export function SealedProof({
   title,
@@ -44,8 +43,8 @@ export function SealedProof({
 
   return (
     <HudPanel
-      label={`SEALED PROOF · ${kind.toUpperCase()}`}
-      status={`${eventCount} EVT`}
+      label={`PROOF · ${kind.toUpperCase()}`}
+      status={`${eventCount} EVENTS`}
       className={cn("flex flex-col", className)}
     >
       <div className="flex flex-col gap-5">
@@ -68,7 +67,7 @@ export function SealedProof({
               data-cursor="link"
               className="qb-label border border-qb-line-strong px-4 py-2 text-qb-bone transition-colors duration-500 hover:bg-qb-bone hover:text-qb-black"
             >
-              Open evidence
+              View evidence
             </a>
           ) : null}
           {bundle ? (

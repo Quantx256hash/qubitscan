@@ -17,6 +17,8 @@ next-env.d.ts
 
 # testing / coverage
 /coverage
+/playwright-report
+/test-results
 
 # env (never commit secrets)
 .env

@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "next dev --port 3040",
     "build": "next build",
+    "e2e:address": "playwright test tests/address-routes.spec.ts",
     "start": "next start -p ${PORT:-3040}",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "next lint"
@@ -25,6 +26,7 @@
     "tailwind-merge": "^3.0.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.56.1",
     "@types/node": "^22.15.3",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",

@@ -23,10 +23,15 @@ export function Cursor() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (isTouch || reduced) return;
     setEnabled(true);
+  }, []);
 
-    const dot = dotRef.current!;
-    const ring = ringRef.current!;
-    const label = labelRef.current!;
+  useEffect(() => {
+    if (!enabled) return;
+
+    const dot = dotRef.current;
+    const ring = ringRef.current;
+    const label = labelRef.current;
+    if (!dot || !ring || !label) return;
     const root = document.documentElement;
     root.style.cursor = "none";
 
@@ -106,9 +111,11 @@ export function Cursor() {
     window.addEventListener("pointerdown", onDown);
     window.addEventListener("pointerup", onUp);
     window.addEventListener("mouseover", onOver);
-    window.addEventListener("mouseout", (e) => {
+    const onOut = (e: MouseEvent) => {
       if (!e.relatedTarget) onLeave();
-    });
+    };
+
+    window.addEventListener("mouseout", onOut);
     document.addEventListener("mouseenter", onEnter);
 
     return () => {
@@ -117,10 +124,12 @@ export function Cursor() {
       window.removeEventListener("pointerdown", onDown);
       window.removeEventListener("pointerup", onUp);
       window.removeEventListener("mouseover", onOver);
+      window.removeEventListener("mouseout", onOut);
+      document.removeEventListener("mouseenter", onEnter);
       root.style.cursor = "";
       root.style.removeProperty("--qb-cursor-scale");
     };
-  }, []);
+  }, [enabled]);
 
   if (!enabled) return null;
 
